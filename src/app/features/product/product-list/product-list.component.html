@@ -1,0 +1,73 @@
+<div *ngIf="loading == false; else loadingInfo">
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Kategori</th>
+          <th scope="col">Ürün Adı</th>
+          <th scope="col">Fiyatı</th>
+          <th scope="col">KDV'si</th>
+          <th scope="col">Stok Adedi</th>
+          <th scope="col">Açıklama</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <th scope="row">{{ product.id }}</th>
+          <td>{{ product.categoryId }}</td>
+          <td>{{ product.name | uppercase}}</td>
+          <td>{{ product.unitPrice | currency:"EUR"}}</td>
+          <td>{{ product.unitPrice | currency:"EUR"}}</td>
+          <td>{{ product.unitsInStock }}</td>
+          <td>{{ product.quantityPerUnit }}</td>
+          <td>
+            <button (click)="addToCart(product)" class="btn btn-sm btn-success">
+              Sepete Ekle
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" (click)="getProductsByPage(pagingInfo.currentPage - 1)">Previous</a></li>
+  
+        <li class={{getCurrentPageStyle(i)}} *ngFor="let i of pageArray">
+          <a class="page-link" (click)="getProductsByPage(i + 1)">{{ i + 1 }}</a>
+        </li>
+  
+        <li class="page-item"><a class="page-link" (click)="getProductsByPage(pagingInfo.currentPage + 1)">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+  
+  <ng-template #loadingInfo>
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-border text-secondary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-border text-danger" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-border text-warning" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-border text-info" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-border text-light" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-border text-dark" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </ng-template>
+  
